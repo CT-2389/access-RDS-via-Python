@@ -20,6 +20,9 @@ def index():
         age = details['age']
         hobby = details['hobby']
         cur = mysql.connection.cursor()
+        cur.execute("create database mydb")
+        cur.execute("use mydb")
+        cur.execute("create table details")
         cur.execute("INSERT INTO details(firstName, lastName, age, hobby) VALUES (%s, %s, %s, %s)", (firstName, lastName, age, hobby))
         mysql.connection.commit()
         cur.close()
